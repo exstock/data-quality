@@ -1,0 +1,24 @@
+{
+  "name": "uniqueness_test",
+  "process.type": "batch",
+  "evaluate.rule": {
+    "rules": [
+      {
+        "dsl.type": "pa-dsl",
+        "dq.type": "uniqueness",
+        "spark.temp.table": "check_uniqueness_test",
+        "rule": {"col1":"id","col2":"name","col3":"age","col4":"remark"},
+        "details": {
+          "source_owner":"test",
+          "source": "test",
+          "unique":"unique_cnt",
+          "group":"group_cnt",
+          "duplicate":"duplicate_cnt",
+          "distinct":"distinct_cnt",
+          "total":"total_cnt"
+        }
+      }
+    ]
+  },
+  "sinks": ["console","hive","mysql"]
+}

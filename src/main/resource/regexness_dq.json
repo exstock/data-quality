@@ -1,0 +1,21 @@
+{
+  "name": "regexness_test",
+  "process.type": "batch",
+  "evaluate.rule": {
+    "rules": [
+      {
+        "dsl.type": "pa-dsl",
+        "dq.type": "regexness",
+        "spark.temp.table": "check_regexness_test",
+        "rule": {"id":"'^[0-9]+$'","name":"'^[a-zA-Z]+$'","age":"'^[0-9]+$'"},
+        "details": {
+          "source_owner":"test",
+          "source": "test",
+          "not_match": "unmatch_",
+          "total": "count"
+        }
+      }
+    ]
+  },
+  "sinks": ["console","hive","mysql"]
+}

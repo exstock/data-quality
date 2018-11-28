@@ -1,0 +1,23 @@
+{
+  "name": "accuracy_test",
+  "process.type": "batch",
+  "evaluate.rule": {
+    "rules": [
+      {
+        "dsl.type": "pa-dsl",
+        "dq.type": "accuracy",
+        "spark.temp.table": "check_accuracy_test",
+        "rule": {"id":"id"},
+        "details": {
+          "source_owner":"test",
+          "source": "test",
+          "target_owner":"test",
+          "target":"test3",
+          "miss": "miss_count",
+          "total": "total_count"
+        }
+      }
+    ]
+  },
+  "sinks": ["console","hive","mysql"]
+}

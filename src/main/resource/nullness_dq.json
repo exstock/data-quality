@@ -1,0 +1,21 @@
+{
+  "name": "nullness_test",
+  "process.type": "batch",
+  "evaluate.rule": {
+    "rules": [
+      {
+        "dsl.type": "pa-dsl",
+        "dq.type": "nullness",
+        "spark.temp.table": "check_null_test",
+        "rule": {"col1":"id","col2":"name","col3":"age","col4":"remark"},
+        "details": {
+          "source_owner":"test",
+          "source": "test",
+          "null": "null_",
+          "total": "total_count"
+        }
+      }
+    ]
+  },
+  "sinks": ["console","hive","mysql"]
+}

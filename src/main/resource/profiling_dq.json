@@ -1,0 +1,21 @@
+{
+  "name": "profiling_test",
+  "process.type": "batch",
+  "evaluate.rule": {
+    "rules": [
+      {
+        "dsl.type": "pa-dsl",
+        "dq.type": "profiling",
+        "spark.temp.table": "check_profiling_test",
+        "threshold":"0.05",
+        "rule": {"INSERT_DATE":"AGE"},
+        "details": {
+          "source_owner":"test",
+          "source": "test",
+          "sum": "sum_"
+        }
+      }
+    ]
+  },
+  "sinks": ["console","hive","mysql"]
+}
