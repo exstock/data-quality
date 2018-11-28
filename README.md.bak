@@ -30,7 +30,7 @@ runÖĞĞèÒª¹¹½¨job£¬ÈçÀàDQJobBuilderµÄ·½·¨buildDQJob£¬jobÓÖĞèÒª·Ö½âÎªstepÄÄĞ©²½Öè£
 close·½·¨ÊÇ¹Ø±ÕsparkSession
 
 4¡¢¸ù¾İÉÏÒ»²½»ñÈ¡µÄDQJob£¬Ö´ĞĞexecute·½·¨£¬Õâ¸ö·½·¨ÊÇµ÷ÓÃÁËDQStepµÄexecute·½·¨£¬Êµ¼ÊÖ´ĞĞµÄÊÇ
-SparkReadStepÖĞµÄ·½·¨ºÍSparkWriteStepÖĞµÄexecute·½·¨£¨SparkReadStepºÍSparkWriteStepÊÇDQStepµÄ×ÓÀà£¬ÒÑ¾­ÖØĞ´ÁËexecute·½·¨£©
+SparkReadStepÖĞµÄ·½·¨ºÍSparkWriteStep£¨SparkReadStepºÍSparkWriteStepÊÇDQStepµÄ×ÓÀà£¬ÒÑ¾­ÖØĞ´ÁËexecute·½·¨£©
 Õâ¸öÊÇÓÃÀ´Ö´ĞĞ¹æÔòĞ£ÑéµÄÆ´½Ósql²¢×¢²á³ÉÄÚ´æ±íµÄ
 
 
