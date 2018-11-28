@@ -43,7 +43,7 @@ SparkReadStep中的方法和SparkWriteStep中的execute方法（SparkReadStep和SparkWriteS
 总结：
 程序是面向对象设计，采用了工厂模式、结构很清晰
 如果后面新增规则，只需要新增DslType、DqType及对应的Dq的处理类型，如AccuracyExpr2DQSteps
-如果需要增加json的配置信息，则对应的json映射类需要修改
+如果需要增加json的配置信息，则对应的json映射类需要修改。这个程序功能简单，复杂功能需要进一步开发
 
 
 --程序的执行
