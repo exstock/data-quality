@@ -67,7 +67,7 @@ case class ProfilingExpr2DQSteps(context: DQContext,
         val amtColumn=item._2
         val str=
           s"""
-             |CASE WHEN PRE_${prefix}${item._1}>0 AND ${prefix}${item._1}>PRE_${prefix}${item._1}*${threshold} THEN 'Y' ELSE 'N' END AS ${item._1}
+             |CASE WHEN ${prefix}${item._2}>PRE_${prefix}${item._2}*${threshold} THEN 'Y' ELSE 'N' END AS ${item._2}
            """.stripMargin
 
         outRuleSqlList=outRuleSqlList:+str
@@ -82,15 +82,15 @@ case class ProfilingExpr2DQSteps(context: DQContext,
         val amtColumn=item._2
         val str=
           s"""
-             |SUM(CASE WHEN DATE_FORMAT(${dateColumn},'yyyy-MM-dd')=DATE_ADD(CURRENT_DATE,-1) THEN NVL(${amtColumn},0) END) AS ${prefix}${item._1},
-             |SUM(CASE WHEN DATE_FORMAT(${dateColumn},'yyyy-MM-dd')=DATE_ADD(CURRENT_DATE,-2) THEN NVL(${amtColumn},0) END) AS PRE_${prefix}${item._1}
+             |SUM(CASE WHEN DATE_FORMAT(${dateColumn},'yyyy-MM-dd')=DATE_ADD(CURRENT_DATE,-1) THEN NVL(${amtColumn},0) END) AS ${prefix}${item._2},
+             |SUM(CASE WHEN DATE_FORMAT(${dateColumn},'yyyy-MM-dd')=DATE_ADD(CURRENT_DATE,-2) THEN NVL(${amtColumn},0) END) AS PRE_${prefix}${item._2}
            """.stripMargin
 
         inRuleSqlList=inRuleSqlList:+str
       }
       var inRuleSql:String=inRuleSqlList.mkString(",")
 
-      val computeTableName=s"${sourceTableName}_compute"
+      val computeTableName=s"${sourceTableName}_profiling"
       val computeSql =
         s"""
            |SELECT '${sourceOwner}.${sourceTableName}' AS TABLE_NAME,
@@ -107,7 +107,7 @@ case class ProfilingExpr2DQSteps(context: DQContext,
          s"""SELECT '${sourceOwner}' AS TABLE_OWNER,
             |'${sourceTableName}' AS TABLE_NAME,
             |'${item._1}-${item._2}' AS COLUMN_NAME,
-            |${item._1} AS COLUMN_VALUE,
+            |${item._2} AS COLUMN_VALUE,
             |CURRENT_TIMESTAMP AS INSERT_DATE,
             |'${ruleName}' as DATA_SOURCE
             |FROM ${computeTableName}""".stripMargin

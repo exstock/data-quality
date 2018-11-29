@@ -63,7 +63,7 @@ case class RegexnessExpr2DQSteps (context: DQContext,
         columnList=columnList:+item._1
       }
       val ruleSql:String=ruleSqlList.mkString(",")
-      val computeTableName = s"${sourceTableName}_compute"
+      val computeTableName = s"${sourceTableName}_regexness"
       val computeSql =
         s"""
            |SELECT COUNT(1) AS ${total},${ruleSql}

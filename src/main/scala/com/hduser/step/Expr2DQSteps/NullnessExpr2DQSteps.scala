@@ -65,7 +65,7 @@ case class NullnessExpr2DQSteps(context: DQContext,
         }
       }.mkString(",")
 
-      val computeTableName=s"${sourceTableName}_compute"
+      val computeTableName=s"${sourceTableName}_nullness"
       val computeSql =
         s"""
            |SELECT ${rulesql2} FROM (

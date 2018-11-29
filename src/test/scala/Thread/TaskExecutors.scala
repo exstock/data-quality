@@ -1,14 +1,14 @@
-package com.hduser
+package Thread
 
-import com.hduser.configuration.`type`._
+import com.hduser.configuration.`type`.{BatchProcessType, ProcessType}
 import com.hduser.configuration.param.{DQConfig, EnvConfig, PaConfig, Param}
 import com.hduser.configuration.reader.ParamReaderFactory
 import com.hduser.launch.{BatchDQApp, DQApp}
 
-import scala.reflect._
+import scala.reflect.ClassTag
 import scala.util.{Failure, Success, Try}
 
-object Application{
+class TaskExecutors(envParamFile:String,dqParamFile:String) extends Runnable{
 
   private def readParamFile[T<:Param](file:String)(implicit m:ClassTag[T]):Try[T]={
     val paramReader=ParamReaderFactory.getParamReader(file)
@@ -21,19 +21,8 @@ object Application{
   private def shutdown(): Unit = {
   }
 
-  def main(args: Array[String]): Unit = {
 
-    if (args.length<2){
-      println("参数数量少于2")
-      sys.exit(-1)
-    }
-
-    val envParamFile=args(0)
-    val dqParamFile=args(1)
-
-
-/*    val envParamFile="D:\\json\\env.json"
-    val dqParamFile="D:\\json\\nullness_dq.json"*/
+  override def run(): Unit = {
 
     val envParam=readParamFile[EnvConfig](envParamFile) match {
       case Success(p)=>p
@@ -48,7 +37,6 @@ object Application{
         throw new Exception(s"${dqParamFile}配置文件读取失败")
       }
     }
-
 
     val allParam:PaConfig=PaConfig(envParam,dqParam)
 
@@ -95,5 +83,4 @@ object Application{
 
     shutdown()
   }
-
 }

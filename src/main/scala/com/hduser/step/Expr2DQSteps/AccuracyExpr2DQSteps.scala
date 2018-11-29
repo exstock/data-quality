@@ -121,7 +121,7 @@ case class AccuracyExpr2DQSteps(context:DQContext,
       }
       val columns=column_list.mkString(",")
 
-      val computeTable=s"${sourceTableName}_compute"
+      val computeTable=s"${sourceTableName}_accuracy"
       val computeSql=procType match {
         case BatchProcessType=>
           s"""

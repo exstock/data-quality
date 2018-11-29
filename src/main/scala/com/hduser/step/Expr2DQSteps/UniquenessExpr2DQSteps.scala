@@ -91,7 +91,7 @@ case class UniquenessExpr2DQSteps (context: DQContext,
       val totalRecordCountColName=details.get(_total).getOrElse("TOTAL_CNT")
       val distRecordCountColName=details.get(_distinct).getOrElse("DISTINCT_CNT")
 
-      val computeTableName=s"${sourceTableName}_compute"
+      val computeTableName=s"${sourceTableName}_uniqueness"
       val computeSql = {
         s"""SELECT '${sourceOwner}.${sourceTableName}' AS TABLE_NAME,
            |C.${totalRecordCountColName},
